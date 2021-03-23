@@ -13,6 +13,8 @@ class MB7040:
         self.address = address
         self.distance = 0
 
+        self.invalidAddresses = [0x0, 0x80, 0x164, 0x170]
+
         self.readDistance()
 
     def readDistance(self):
@@ -32,6 +34,23 @@ class MB7040:
 
         # Return distance
         return self.distance
+
+    def changeAddress(self, address):
+
+        if address in self.invalidAddresses:
+            raise self.InvalidAddress
+        else:
+            address = address << 1
+            self.bus.write_i2c_block_data(self.address, 224, [170, 165, address])
+            self.address = address
+
+        return self.address
+
+    class Error(Exception):
+        pass
+
+    class InvalidAddress(Error):
+        pass
 
 if __name__ == "__main__":
 
