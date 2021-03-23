@@ -1,2 +1,2 @@
 # MB7040
-MB7040 Ultrasonic Sensor Library
+MB7040 Ultrasonic Sensor Python Library
