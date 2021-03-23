@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-# Import external libraries
 import time
 from smbus2 import SMBus
 
